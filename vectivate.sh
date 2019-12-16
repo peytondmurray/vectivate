@@ -6,7 +6,7 @@
 (return 0 2>/dev/null)
 if [[ $? == 1 ]]; then
 	echo "vectivate must be sourced; please set your alias accordingly."
-	return 1
+	exit 1
 fi
 
 # Grab all files named 'activate', count how many levels deep in the directory tree they are,
@@ -34,7 +34,7 @@ else
 	    # If the last candidate file has been reached, issue an error message to stdout.
 		if [[ ${target} == $(tail -1 ${targets}) ]]; then
 			echo "No virtual environments found in current directory tree."
-			return 1
+			exit 1
 		fi
 	done
 fi
