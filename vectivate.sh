@@ -16,7 +16,7 @@ targets=$(find ./ -type f -name 'activate' | awk -F"/" '{printf "%s:%s\n", NF, $
 # If no candidate targets are found, write an error to stdout. Otherwise, iterate through each one,
 # and check whether it looks like a valid virtualenv activate script. If it does, source it; otherwise,
 # move on to the other candidate files, which exist deeper into the directory tree
-if [[ $(echo ${targets} | wc -l) == 0 ]]; then
+if [ -z ${targets} ]; then
 	echo "No virtual environments found in current directory tree."
 else
 	for target in ${targets}; do
